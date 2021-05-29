@@ -33,9 +33,11 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    
+    #text = event.message.text
+    user_id = event.source.user_id
     message = TextSendMessage(text="請問你的星座")
-    line_bot_api.reply_message(event.reply_token, message)
+    line_bot_api.push_message(user_id, message)
+    #line_bot_api.reply_message(event.reply_token, message)
 
     message = TextSendMessage(text=event.message.text)
     line_bot_api.reply_message(event.reply_token, message)
