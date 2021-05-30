@@ -56,7 +56,15 @@ def handle_message(event):
         """
         message = TextSendMessage(text="投資投資")
         line_bot_api.push_message(user_id, message)
+    
+    elif text == "風險高":
+        """
+        根據風險，做投資組合推薦
+        """
+        pass
     else:
+        message = TextSendMessage(text="閉嘴")
+        line_bot_api.push_message(user_id, message)
         pass
     
     #line_bot_api.reply_message(event.reply_token, message)
