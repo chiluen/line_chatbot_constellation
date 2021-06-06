@@ -8,6 +8,8 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 
+from crawl_constellation import crawl
+
 app = Flask(__name__)
 
 # Channel Access Token
@@ -51,10 +53,10 @@ def handle_message(event):
         line_bot_api.push_message(user_id, message)  
 
     elif text == "天蠍座 1":
-        """
-        把爬蟲弄進來，根據運勢去做篩選
-        """
-        message = TextSendMessage(text="投資投資")
+        website_address = "https://astro.click108.com.tw/daily_10.php?iAstro=8&iAcDay=2021-06-13"
+        dic_concellation = crawl(website_address)
+                
+        message = TextSendMessage(text=dic_concellation["fortune_descri"])
         line_bot_api.push_message(user_id, message)
     
     elif text == "風險高":
