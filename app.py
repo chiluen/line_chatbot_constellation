@@ -56,11 +56,10 @@ def handle_message(event):
 
     elif text == "button":
         buttons_template = ButtonsTemplate(
-            title='My buttons sample', text='Hello, my buttons', actions=[
-                URIAction(label='Go to line.me', uri='https://line.me'),
-                PostbackAction(label='ping', data='ping'),
-                PostbackAction(label='ping with text', data='ping', text='ping'),
-                MessageAction(label='Translate Rice', text='米')
+            title='Button Template', text='下面有不同功能的button', actions=[
+                URIAction(label='Go to 統神端火鍋', uri='https://www.youtube.com/watch?v=072tU1tamd0'),
+                PostbackAction(label='Postback', data='這就是postback'),
+                MessageAction(label='按了就會輸出我設定的話', text='早安')#幫用戶說一段指定訊息
             ])
         template_message = TemplateSendMessage(
             alt_text='Buttons alt text', template=buttons_template) #alt_text為無法輸出時產生的字樣
@@ -70,6 +69,17 @@ def handle_message(event):
         message = TextSendMessage(text="輸入錯誤")
         line_bot_api.push_message(user_id, message)
         pass
+
+@handler.add(PostbackEvent)
+def handle_message(event):
+
+    text=event.postback.data
+    user_id = event.source.user_id
+
+    message = TextSendMessage(text="這是postback的資訊： "+text)
+    line_bot_api.push_message(user_id, message) 
+
+
 
 import os
 if __name__ == "__main__":
