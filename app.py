@@ -63,16 +63,36 @@ def handle_message(event):
                 MessageAction(
                     label='金牛座',
                     text='金牛座'
-                ),
-                MessageAction(
-                    label='雙子座',
-                    text='雙子座'
                 )
             ])
         template_message = TemplateSendMessage(
             alt_text='Buttons alt text', template=buttons_template) #alt_text為無法輸出時產生的字樣
-        line_bot_api.reply_message(event.reply_token, template_message)
+        line_bot_api.push_message(user_id, template_message)
+
+        buttons_template = ButtonsTemplate(
+            title='Button Template2', text='下面有不同功能的button', actions=[
+                MessageAction(
+                    label='巨蟹座',
+                    text='巨蟹座'
+                ),
+                MessageAction(
+                    label='獅子座',
+                    text='獅子座'
+                ),
+                MessageAction(
+                    label='處女座',
+                    text='處女座'
+                ),
+                MessageAction(
+                    label='金牛座',
+                    text='金牛座'
+                )
+            ])
+        template_message = TemplateSendMessage(
+            alt_text='Buttons alt text', template=buttons_template) #alt_text為無法輸出時產生的字樣
+        line_bot_api.push_message(user_id, template_message)
         
+
 
 @handler.add(PostbackEvent)
 def handle_message(event):
