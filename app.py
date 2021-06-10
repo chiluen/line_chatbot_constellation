@@ -57,9 +57,9 @@ def handle_message(event):
     elif text == "button":
         buttons_template = ButtonsTemplate(
             title='Button Template', text='下面有不同功能的button', actions=[
-                URIAction(label='Go to 統神端火鍋', uri='https://www.youtube.com/watch?v=072tU1tamd0'),
+                URIAction(label='好看的影片喔^^', uri='https://www.youtube.com/watch?v=072tU1tamd0'),
                 PostbackAction(label='Postback', data='這就是postback'),
-                MessageAction(label='按了就會輸出我設定的話', text='早安')#幫用戶說一段指定訊息
+                MessageAction(label='按了就會輸出我設定的話', text='開始')#幫用戶說一段指定訊息
             ])
         template_message = TemplateSendMessage(
             alt_text='Buttons alt text', template=buttons_template) #alt_text為無法輸出時產生的字樣
