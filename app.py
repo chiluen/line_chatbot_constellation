@@ -53,8 +53,8 @@ def handle_message(event):
 
         message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"])
         line_bot_api.push_message(user_id, message)
-
-    elif text == "button":
+        
+    else:
         buttons_template = ButtonsTemplate(
             title='Button Template', text='下面有不同功能的button', actions=[
                 URIAction(label='好看的影片喔^^', uri='https://www.youtube.com/watch?v=072tU1tamd0'),
@@ -65,10 +65,6 @@ def handle_message(event):
             alt_text='Buttons alt text', template=buttons_template) #alt_text為無法輸出時產生的字樣
         line_bot_api.reply_message(event.reply_token, template_message)
         
-    else:
-        message = TextSendMessage(text="輸入錯誤")
-        line_bot_api.push_message(user_id, message)
-        pass
 
 @handler.add(PostbackEvent)
 def handle_message(event):
